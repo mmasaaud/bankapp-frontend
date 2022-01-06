@@ -16,6 +16,8 @@ function Signup() {
     const [error, setError] = useState("");
     const [signUpsuccessful, setSignUpsuccessful] = useState(false)
 
+    const url = process.env.REACT_APP_API_URL
+
     function validateForm(){
         return userName.length > 0 && password.length > 0;
     }
@@ -32,7 +34,7 @@ function Signup() {
             body: JSON.stringify({userName: username, password: pass, email: Email, name: Name})
         }
 
-        fetch('http://127.0.0.1:8080/signup', requestOption)
+        fetch(`${url}/signup`, requestOption)
         .then(async response => {
             const isJson = response.headers.get('content-type')?.includes('application/json');
             const data = isJson && await response.json();

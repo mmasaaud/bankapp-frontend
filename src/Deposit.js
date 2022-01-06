@@ -15,6 +15,8 @@ function Deposit() {
     const [error, setError] = useState("")
     const [depositFlag, setDepositFlag] = useState(false)
 
+    const url = process.env.REACT_APP_API_URL
+
     function handleDeposit(event){
         // const accountNumber = event.target.accountNumber.value;
         // const amount = event.target.amount.value;
@@ -24,7 +26,7 @@ function Deposit() {
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({amount: amount})
         }
-        fetch(`http://127.0.0.1:8080/deposit/${accountNumber}`, requestOption)
+        fetch(`${url}/deposit/${accountNumber}`, requestOption)
         .then(async response => {
             const isJson = response.headers.get('content-type')?.includes('application/json');
             const data = isJson && await response.json();

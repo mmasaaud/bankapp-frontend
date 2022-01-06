@@ -6,7 +6,6 @@ import "./Login.css";
 import {useNavigate} from "react-router-dom"
 import { ButtonGroup, ButtonToolbar } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import Accounts from "./Accounts";
 
 function Login() {
     const [userName, setUserName] = useState("");
@@ -15,6 +14,9 @@ function Login() {
     const [error, setError] = useState("")
     const [userId, setUserId] = useState("")
     const nagivate = useNavigate()
+
+    const url = process.env.REACT_APP_API_URL
+    console.log(url)
 
     function validateForm(){
         return userName.length > 0 && password.length > 0;
@@ -34,7 +36,8 @@ function Login() {
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({userName: username, password: pass})
         }
-        fetch('http://127.0.0.1:8080/login', requestOption)
+        console.log(url)
+        fetch(`${url}/login`, requestOption)
         .then(async response => {
             const isJson = response.headers.get('content-type')?.includes('application/json');
             const data = isJson && await response.json();

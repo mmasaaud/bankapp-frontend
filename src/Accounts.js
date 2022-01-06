@@ -11,6 +11,8 @@ function Accounts() {
     }])
     const { id } = useParams();
 
+    const url = process.env.REACT_APP_API_URL
+
     // useEffect(() => {
     //         const requestOption = {
     //         method: 'GET',
@@ -28,15 +30,15 @@ function Accounts() {
     // const id = props.id
 
     useEffect(() => {
-        getAccounts(id)
+        getAccounts(id, url)
     },[]);
 
-    function getAccounts(id){
+    function getAccounts(id, url_p){
         const requestOption = {
             method: 'GET',
             headers: {'Content-Type': 'application/json'}
         }
-        const url = `http://127.0.0.1:8080/getAccountsByUser/${id}`
+        const url = `${url_p}/getAccountsByUser/${id}`
         fetch(url, requestOption)
         .then(async response => {
             const isJson = response.headers.get('content-type')?.includes('application/json');
@@ -44,23 +46,20 @@ function Accounts() {
             setAccount(data)
         })
     }
-
-
-    
     function handleCreateAccount(event){
         const requestOption = {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({})
         }
-        fetch(`http://127.0.0.1:8080/addAccount/${id}`, requestOption)
+        fetch(`${url}/addAccount/${id}`, requestOption)
         .then(async response => {
             const isJson = response.headers.get('content-type')?.includes('application/json');
             const data = isJson && await response.json();
 
             console.log(response)
             if (response.status == 201){
-            getAccounts(id)
+            getAccounts(id, url)
         }
         })        
     }

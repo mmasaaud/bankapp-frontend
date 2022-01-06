@@ -13,6 +13,8 @@ function Withdraw(){
     const [error, setError] = useState("")
     const [withdrawFlag, setWithdrawFlag] = useState(false)
 
+    const url = process.env.REACT_APP_API_URL;
+
     function handleWithdraw(event){
         console.log(accountNumber, amount)
         const requestOptions = {
@@ -20,7 +22,7 @@ function Withdraw(){
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({amount: amount})
         }
-        fetch(`http://127.0.0.1:8080/debit/${accountNumber}`, requestOptions)
+        fetch(`${url}/debit/${accountNumber}`, requestOptions)
         .then(async response => {
             const isJson = response.headers.get('content-type')?.includes('application/json');
             const data = isJson && await response.json();
