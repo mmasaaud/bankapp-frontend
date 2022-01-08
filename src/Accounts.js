@@ -12,6 +12,7 @@ function Accounts() {
     const { id } = useParams();
 
     const url = process.env.REACT_APP_API_URL
+    console.log(url)
 
     // useEffect(() => {
     //         const requestOption = {
