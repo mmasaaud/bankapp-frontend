@@ -16,7 +16,7 @@ class App extends Component {
       <div className="App">
         <header className="App-header">
           <p>
-            Welcome to Michael Bank
+            Welcome to Octank Bank
           </p>
         </header>  
           <Routes>
