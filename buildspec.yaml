@@ -14,7 +14,7 @@ phases:
       - echo Build started on `date`
       - echo Building the Docker image...
       - ls
-      - docker build -t $REPO_ECR:$IMAGE_TAG .
+      - docker build -t $REPO_ECR:latest .
       - docker tag $REPO_ECR:latest $REPO_ECR:$IMAGE_TAG
   post_build:
     commands:
