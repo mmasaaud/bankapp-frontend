@@ -1,4 +1,4 @@
-FROM 648064107398.dkr.ecr.us-west-2.amazonaws.com/fortend:node
+FROM 648064107398.dkr.ecr.us-west-2.amazonaws.com/fortend:nodejs
 WORKDIR /app
 ENV PATH /app/node_modules/.bin:$PATH
 COPY package.json ./
